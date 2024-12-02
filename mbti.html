@@ -31,45 +31,4 @@
         <!-- MBTI Personality Type Questions -->
         <p>Do you prefer:</p>
         <input name="extroversion_introversion" type="radio" value="E" required> Extroversion
-        <input name="extroversion_introversion" type="radio" value="I" required> Introversion
-        
-        <p>Do you focus more on:</p>
-        <input name="sensing_intuition" type="radio" value="S" required> Sensing
-        <input name="sensing_intuition" type="radio" value="N" required> Intuition
-        
-        <p>When making decisions, do you prefer:</p>
-        <input name="thinking_feeling" type="radio" value="T" required> Thinking
-        <input name="thinking_feeling" type="radio" value="F" required> Feeling
-        
-        <p>Your approach to life is more:</p>
-        <input name="judging_perceiving" type="radio" value="J" required> Judging
-        <input name="judging_perceiving" type="radio" value="P" required> Perceiving
-
-        <!-- Submit Button -->
-        <p><input type="button" value="Submit" onclick="calculateMBTI()"></p>
-    </form>
-
-    <!-- Display MBTI Result -->
-    <div id="result" class="result"></div>
-
-    <script>
-        function calculateMBTI() {
-            // Get form elements
-            const form = document.getElementById('mbtiForm');
-            const resultDiv = document.getElementById('result');
-
-            // Get user inputs
-            const extroversionIntroversion = form.querySelector('input[name="extroversion_introversion"]:checked').value;
-            const sensingIntuition = form.querySelector('input[name="sensing_intuition"]:checked').value;
-            const thinkingFeeling = form.querySelector('input[name="thinking_feeling"]:checked').value;
-            const judgingPerceiving = form.querySelector('input[name="judging_perceiving"]:checked').value;
-
-            // Generate MBTI type
-            const mbtiType = extroversionIntroversion + sensingIntuition + thinkingFeeling + judgingPerceiving;
-
-            // Display the result
-            resultDiv.textContent = "Your MBTI type is: " + mbtiType;
-        }
-    </script>
-</body>
-</html>
+        <input name="e
