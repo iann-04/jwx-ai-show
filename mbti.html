@@ -31,4 +31,66 @@
         <!-- MBTI Personality Type Questions -->
         <p>Do you prefer:</p>
         <input name="extroversion_introversion" type="radio" value="E" required> Extroversion
-        <input name="e
+        <input name="extroversion_introversion" type="radio" value="I" required> Introversion
+        
+        <p>Do you focus more on:</p>
+        <input name="sensing_intuition" type="radio" value="S" required> Sensing
+        <input name="sensing_intuition" type="radio" value="N" required> Intuition
+        
+        <p>When making decisions, do you prefer:</p>
+        <input name="thinking_feeling" type="radio" value="T" required> Thinking
+        <input name="thinking_feeling" type="radio" value="F" required> Feeling
+        
+        <p>Your approach to life is more:</p>
+        <input name="judging_perceiving" type="radio" value="J" required> Judging
+        <input name="judging_perceiving" type="radio" value="P" required> Perceiving
+        
+        <!-- Additional Questions -->
+        <p>You prefer:</p>
+        <input name="structure_spontaneity" type="radio" value="J" required> Structured routines
+        <input name="structure_spontaneity" type="radio" value="P" required> Spontaneous experiences
+        
+        <p>When solving problems, do you:</p>
+        <input name="logic_impact" type="radio" value="T" required> Focus on logic and facts
+        <input name="logic_impact" type="radio" value="F" required> Consider the emotional impact on others
+        
+        <p>When in a social setting, you:</p>
+        <input name="social_energy" type="radio" value="E" required> Feel energized and enjoy engaging with others
+        <input name="social_energy" type="radio" value="I" required> Feel drained after socializing and prefer solitude
+        
+        <p>You prefer to make decisions based on:</p>
+        <input name="decision_approach" type="radio" value="T" required> Objective reasoning and facts
+        <input name="decision_approach" type="radio" value="F" required> Values and personal relationships
+        
+        <!-- Submit Button -->
+        <p><input type="button" value="Submit" onclick="calculateMBTI()"></p>
+    </form>
+
+    <!-- Display MBTI Result -->
+    <div id="result" class="result"></div>
+
+    <script>
+        function calculateMBTI() {
+            // Get form elements
+            const form = document.getElementById('mbtiForm');
+            const resultDiv = document.getElementById('result');
+
+            // Get user inputs
+            const extroversionIntroversion = form.querySelector('input[name="extroversion_introversion"]:checked').value;
+            const sensingIntuition = form.querySelector('input[name="sensing_intuition"]:checked').value;
+            const thinkingFeeling = form.querySelector('input[name="thinking_feeling"]:checked').value;
+            const judgingPerceiving = form.querySelector('input[name="judging_perceiving"]:checked').value;
+            const structureSpontaneity = form.querySelector('input[name="structure_spontaneity"]:checked').value;
+            const logicImpact = form.querySelector('input[name="logic_impact"]:checked').value;
+            const socialEnergy = form.querySelector('input[name="social_energy"]:checked').value;
+            const decisionApproach = form.querySelector('input[name="decision_approach"]:checked').value;
+
+            // Generate MBTI type
+            const mbtiType = extroversionIntroversion + sensingIntuition + thinkingFeeling + judgingPerceiving;
+
+            // Display the result
+            resultDiv.textContent = "Your MBTI type is: " + mbtiType;
+        }
+    </script>
+</body>
+</html>
