@@ -57,8 +57,8 @@
             position: absolute;
             bottom: 10%;
             right: 10%;
-            width: 300px; /* 调整图片大小 */
-            height: 300px; /* 调整图片大小 */
+            width: 300px;
+            height: 300px;
             object-fit: cover;
             border-radius: 10px;
         }
@@ -114,6 +114,7 @@
     // 更新页面
     function updateSlide() {
         slides.forEach((slide, index) => {
+            // 更新每一页的 transform 样式
             if (index < currentSlide) {
                 slide.style.transform = 'translateX(-100%)'; // 移动到左侧
             } else if (index > currentSlide) {
