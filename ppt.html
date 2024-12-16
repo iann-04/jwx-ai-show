@@ -1,117 +1,93 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mobile Web PPT</title>
+    <title>手机翻页PPT</title>
     <style>
         body {
             margin: 0;
-            overflow: hidden;
             font-family: Arial, sans-serif;
+            overflow: hidden;
+        }
+        
+        .slide-container {
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+            width: 100vw;
+            overflow: hidden;
         }
 
         .slide {
-            width: 100vw;
-            height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
-            position: absolute;
-            transition: transform 0.6s ease;
-            font-size: 3rem;
+            text-align: center;
+            height: 100%;
+            width: 100%;
+            font-size: 48px;
+            color: #333;
             font-weight: bold;
-            color: #ffffff;
+            position: relative;
+            transition: transform 0.5s ease;
         }
 
-        .slide:nth-child(1) {
-            background: linear-gradient(to bottom right, #d1c4e9, #b39ddb);
+        /* 渐变背景 */
+        .slide-1 {
+            background: linear-gradient(to bottom, #d8b7f1, #e0c4ff);
         }
 
-        .slide:nth-child(2) {
-            background: linear-gradient(to bottom right, #bbdefb, #90caf9);
+        .slide-2 {
+            background: linear-gradient(to bottom, #a7d8f0, #c8e7f3);
         }
 
-        .slide:nth-child(3) {
-            background: linear-gradient(to bottom right, #fff9c4, #fff59d);
+        .slide-3 {
+            background: linear-gradient(to bottom, #f9f1a5, #fdf3b8);
         }
 
-        .navigation {
+        /* 图片样式 */
+        .slide img {
             position: absolute;
-            bottom: 20px;
-            left: 50%;
-            transform: translateX(-50%);
+            bottom: 10%;
+            right: 10%;
+            width: 100px;
+            height: 100px;
+            object-fit: cover;
+            border-radius: 10px;
+        }
+
+        .swiper {
+            width: 100%;
+            height: 100%;
             display: flex;
-            gap: 15px;
+            flex-direction: column;
+            overflow-y: scroll;
+            scroll-snap-type: y mandatory;
         }
 
-        .nav-btn {
-            width: 15px;
-            height: 15px;
-            border-radius: 50%;
-            background-color: rgba(255, 255, 255, 0.5);
-            border: 2px solid #ffffff;
-            cursor: pointer;
-            transition: background-color 0.3s, transform 0.2s;
+        .swiper .slide {
+            scroll-snap-align: start;
         }
 
-        .nav-btn:hover {
-            transform: scale(1.2);
-        }
-
-        .nav-btn.active {
-            background-color: #ffffff;
-        }
     </style>
 </head>
 <body>
 
-<div class="slides">
-    <div class="slide">祯元</div>
-    <div class="slide">抽烟强</div>
-    <div class="slide">经典赘婿</div>
+<div class="swiper">
+    <div class="slide slide-1">
+        祯元
+        <img src="图片1路径" alt="图片1">
+    </div>
+    <div class="slide slide-2">
+        抽烟强
+        <img src="图片2路径" alt="图片2">
+    </div>
+    <div class="slide slide-3">
+        经典赘婿
+        <img src="图片3路径" alt="图片3">
+    </div>
 </div>
-
-<div class="navigation"></div>
-
-<script>
-    const slides = document.querySelectorAll('.slide');
-    const navigation = document.querySelector('.navigation');
-    let currentSlide = 0;
-
-    function updateSlides() {
-        slides.forEach((slide, index) => {
-            slide.style.transform = `translateY(${(index - currentSlide) * 100}%)`;
-        });
-        document.querySelectorAll('.nav-btn').forEach((btn, index) => {
-            btn.classList.toggle('active', index === currentSlide);
-        });
-    }
-
-    function createNavigation() {
-        slides.forEach((_, index) => {
-            const btn = document.createElement('div');
-            btn.classList.add('nav-btn');
-            btn.addEventListener('click', () => {
-                currentSlide = index;
-                updateSlides();
-            });
-            navigation.appendChild(btn);
-        });
-    }
-
-    window.addEventListener('wheel', (e) => {
-        if (e.deltaY > 0) {
-            currentSlide = (currentSlide + 1) % slides.length;
-        } else {
-            currentSlide = (currentSlide - 1 + slides.length) % slides.length;
-        }
-        updateSlides();
-    });
-
-    createNavigation();
-    updateSlides();
-</script>
 
 </body>
 </html>
