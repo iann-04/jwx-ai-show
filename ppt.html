@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Butterfly Themed Web PPT</title>
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+            font-family: Arial, sans-serif;
+            background-color: #f7f5f2;
+        }
+
+        .slide {
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: absolute;
+            transition: transform 0.6s ease;
+            background-size: cover;
+            background-position: center;
+            color: #ffffff;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+        }
+
+        .slide:nth-child(1) {
+            background-image: url('https://source.unsplash.com/1600x900/?butterfly');
+        }
+
+        .slide:nth-child(2) {
+            background-image: url('https://source.unsplash.com/1600x900/?butterfly,nature');
+        }
+
+        .slide:nth-child(3) {
+            background-image: url('https://source.unsplash.com/1600x900/?butterfly,flowers');
+        }
+
+        .navigation {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 10px;
+        }
+
+        .nav-btn {
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.5);
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .nav-btn.active {
+            background-color: #ffffff;
+        }
+    </style>
+</head>
+<body>
+
+<div class="slides">
+    <div class="slide">Welcome to the Butterfly World</div>
+    <div class="slide">Butterflies are symbols of transformation</div>
+    <div class="slide">Thank you for your attention</div>
+</div>
+
+<div class="navigation"></div>
+
+<script>
+    const slides = document.querySelectorAll('.slide');
+    const navigation = document.querySelector('.navigation');
+    let currentSlide = 0;
+
+    function updateSlides() {
+        slides.forEach((slide, index) => {
+            slide.style.transform = `translateX(${(index - currentSlide) * 100}%)`;
+        });
+        document.querySelectorAll('.nav-btn').forEach((btn, index) => {
+            btn.classList.toggle('active', index === currentSlide);
+        });
+    }
+
+    function createNavigation() {
+        slides.forEach((_, index) => {
+            const btn = document.createElement('div');
+            btn.classList.add('nav-btn');
+            btn.addEventListener('click', () => {
+                currentSlide = index;
+                updateSlides();
+            });
+            navigation.appendChild(btn);
+        });
+    }
+
+    createNavigation();
+    updateSlides();
+
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'ArrowRight') {
+            currentSlide = (currentSlide + 1) % slides.length;
+        } else if (e.key === 'ArrowLeft') {
+            currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+        }
+        updateSlides();
+    });
+</script>
+
+</body>
+</html>
