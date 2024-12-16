@@ -3,13 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Butterfly Themed Web PPT</title>
+    <title>Mobile Web PPT</title>
     <style>
         body {
             margin: 0;
             overflow: hidden;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #f0f8ff;
+            font-family: Arial, sans-serif;
         }
 
         .slide {
@@ -20,52 +19,21 @@
             align-items: center;
             position: absolute;
             transition: transform 0.6s ease;
-            background-size: cover;
-            background-position: center;
+            font-size: 3rem;
+            font-weight: bold;
             color: #ffffff;
-            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.8);
-            font-size: 2rem;
-            padding: 20px;
-            box-sizing: border-box;
         }
 
         .slide:nth-child(1) {
-            background-image: url('https://source.unsplash.com/1600x900/?butterfly');
+            background: linear-gradient(to bottom right, #d1c4e9, #b39ddb);
         }
 
         .slide:nth-child(2) {
-            background-image: url('https://source.unsplash.com/1600x900/?butterfly,nature');
+            background: linear-gradient(to bottom right, #bbdefb, #90caf9);
         }
 
         .slide:nth-child(3) {
-            background-image: url('https://source.unsplash.com/1600x900/?butterfly,flowers');
-        }
-
-        .slide:nth-child(4) {
-            background-image: url('https://source.unsplash.com/1600x900/?butterfly,sky');
-        }
-
-        .arrow {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            font-size: 3rem;
-            color: rgba(0, 0, 0, 0.5);
-            cursor: pointer;
-            z-index: 1000;
-            user-select: none;
-        }
-
-        .arrow:hover {
-            color: rgba(0, 0, 0, 0.8);
-        }
-
-        .arrow-left {
-            left: 20px;
-        }
-
-        .arrow-right {
-            right: 20px;
+            background: linear-gradient(to bottom right, #fff9c4, #fff59d);
         }
 
         .navigation {
@@ -94,51 +62,14 @@
         .nav-btn.active {
             background-color: #ffffff;
         }
-
-        audio {
-            position: absolute;
-            top: 10px;
-            left: 10px;
-        }
-
-        .slide h1 {
-            font-size: 3.5rem;
-            font-weight: bold;
-        }
-
-        .slide p {
-            margin-top: 15px;
-            font-size: 1.5rem;
-        }
     </style>
 </head>
 <body>
 
-<audio controls autoplay loop>
-    <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
-    Your browser does not support the audio element.
-</audio>
-
-<div class="arrow arrow-left">&#9664;</div>
-<div class="arrow arrow-right">&#9654;</div>
-
 <div class="slides">
-    <div class="slide">
-        <h1>Welcome to the Butterfly World</h1>
-        <p>Experience the elegance of these delicate creatures.</p>
-    </div>
-    <div class="slide">
-        <h1>Transformation Symbol</h1>
-        <p>Butterflies are the epitome of change and growth.</p>
-    </div>
-    <div class="slide">
-        <h1>Thank You for Your Attention</h1>
-        <p>We hope you feel inspired by the beauty of butterflies.</p>
-    </div>
-    <div class="slide">
-        <h1>Explore Nature</h1>
-        <p>Witness the harmony of butterflies and their habitats.</p>
-    </div>
+    <div class="slide">祯元</div>
+    <div class="slide">抽烟强</div>
+    <div class="slide">经典赘婿</div>
 </div>
 
 <div class="navigation"></div>
@@ -146,13 +77,11 @@
 <script>
     const slides = document.querySelectorAll('.slide');
     const navigation = document.querySelector('.navigation');
-    const arrowLeft = document.querySelector('.arrow-left');
-    const arrowRight = document.querySelector('.arrow-right');
     let currentSlide = 0;
 
     function updateSlides() {
         slides.forEach((slide, index) => {
-            slide.style.transform = `translateX(${(index - currentSlide) * 100}%)`;
+            slide.style.transform = `translateY(${(index - currentSlide) * 100}%)`;
         });
         document.querySelectorAll('.nav-btn').forEach((btn, index) => {
             btn.classList.toggle('active', index === currentSlide);
@@ -171,13 +100,12 @@
         });
     }
 
-    arrowLeft.addEventListener('click', () => {
-        currentSlide = (currentSlide - 1 + slides.length) % slides.length;
-        updateSlides();
-    });
-
-    arrowRight.addEventListener('click', () => {
-        currentSlide = (currentSlide + 1) % slides.length;
+    window.addEventListener('wheel', (e) => {
+        if (e.deltaY > 0) {
+            currentSlide = (currentSlide + 1) % slides.length;
+        } else {
+            currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+        }
         updateSlides();
     });
 
