@@ -38,6 +38,33 @@
             background-image: url('https://source.unsplash.com/1600x900/?butterfly,flowers');
         }
 
+        .slide:nth-child(4) {
+            background-image: url('https://source.unsplash.com/1600x900/?butterfly,sky');
+        }
+
+        .arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 2rem;
+            color: rgba(255, 255, 255, 0.7);
+            cursor: pointer;
+            z-index: 1000;
+            user-select: none;
+        }
+
+        .arrow:hover {
+            color: #ffffff;
+        }
+
+        .arrow-left {
+            left: 20px;
+        }
+
+        .arrow-right {
+            right: 20px;
+        }
+
         .navigation {
             position: absolute;
             bottom: 20px;
@@ -59,14 +86,29 @@
         .nav-btn.active {
             background-color: #ffffff;
         }
+
+        audio {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+        }
     </style>
 </head>
 <body>
+
+<audio controls autoplay loop>
+    <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+</audio>
+
+<div class="arrow arrow-left">&#9664;</div>
+<div class="arrow arrow-right">&#9654;</div>
 
 <div class="slides">
     <div class="slide">Welcome to the Butterfly World</div>
     <div class="slide">Butterflies are symbols of transformation</div>
     <div class="slide">Thank you for your attention</div>
+    <div class="slide">Explore the beauty of butterflies</div>
 </div>
 
 <div class="navigation"></div>
@@ -74,6 +116,8 @@
 <script>
     const slides = document.querySelectorAll('.slide');
     const navigation = document.querySelector('.navigation');
+    const arrowLeft = document.querySelector('.arrow-left');
+    const arrowRight = document.querySelector('.arrow-right');
     let currentSlide = 0;
 
     function updateSlides() {
@@ -97,17 +141,18 @@
         });
     }
 
-    createNavigation();
-    updateSlides();
-
-    document.addEventListener('keydown', (e) => {
-        if (e.key === 'ArrowRight') {
-            currentSlide = (currentSlide + 1) % slides.length;
-        } else if (e.key === 'ArrowLeft') {
-            currentSlide = (currentSlide - 1 + slides.length) % slides.length;
-        }
+    arrowLeft.addEventListener('click', () => {
+        currentSlide = (currentSlide - 1 + slides.length) % slides.length;
         updateSlides();
     });
+
+    arrowRight.addEventListener('click', () => {
+        currentSlide = (currentSlide + 1) % slides.length;
+        updateSlides();
+    });
+
+    createNavigation();
+    updateSlides();
 </script>
 
 </body>
