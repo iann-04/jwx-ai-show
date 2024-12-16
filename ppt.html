@@ -8,8 +8,8 @@
         body {
             margin: 0;
             overflow: hidden;
-            font-family: Arial, sans-serif;
-            background-color: #f7f5f2;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f0f8ff;
         }
 
         .slide {
@@ -23,7 +23,10 @@
             background-size: cover;
             background-position: center;
             color: #ffffff;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.8);
+            font-size: 2rem;
+            padding: 20px;
+            box-sizing: border-box;
         }
 
         .slide:nth-child(1) {
@@ -46,15 +49,15 @@
             position: absolute;
             top: 50%;
             transform: translateY(-50%);
-            font-size: 2rem;
-            color: rgba(255, 255, 255, 0.7);
+            font-size: 3rem;
+            color: rgba(0, 0, 0, 0.5);
             cursor: pointer;
             z-index: 1000;
             user-select: none;
         }
 
         .arrow:hover {
-            color: #ffffff;
+            color: rgba(0, 0, 0, 0.8);
         }
 
         .arrow-left {
@@ -71,7 +74,7 @@
             left: 50%;
             transform: translateX(-50%);
             display: flex;
-            gap: 10px;
+            gap: 15px;
         }
 
         .nav-btn {
@@ -79,8 +82,13 @@
             height: 15px;
             border-radius: 50%;
             background-color: rgba(255, 255, 255, 0.5);
+            border: 2px solid #ffffff;
             cursor: pointer;
-            transition: background-color 0.3s;
+            transition: background-color 0.3s, transform 0.2s;
+        }
+
+        .nav-btn:hover {
+            transform: scale(1.2);
         }
 
         .nav-btn.active {
@@ -91,6 +99,16 @@
             position: absolute;
             top: 10px;
             left: 10px;
+        }
+
+        .slide h1 {
+            font-size: 3.5rem;
+            font-weight: bold;
+        }
+
+        .slide p {
+            margin-top: 15px;
+            font-size: 1.5rem;
         }
     </style>
 </head>
@@ -105,10 +123,22 @@
 <div class="arrow arrow-right">&#9654;</div>
 
 <div class="slides">
-    <div class="slide">Welcome to the Butterfly World</div>
-    <div class="slide">Butterflies are symbols of transformation</div>
-    <div class="slide">Thank you for your attention</div>
-    <div class="slide">Explore the beauty of butterflies</div>
+    <div class="slide">
+        <h1>Welcome to the Butterfly World</h1>
+        <p>Experience the elegance of these delicate creatures.</p>
+    </div>
+    <div class="slide">
+        <h1>Transformation Symbol</h1>
+        <p>Butterflies are the epitome of change and growth.</p>
+    </div>
+    <div class="slide">
+        <h1>Thank You for Your Attention</h1>
+        <p>We hope you feel inspired by the beauty of butterflies.</p>
+    </div>
+    <div class="slide">
+        <h1>Explore Nature</h1>
+        <p>Witness the harmony of butterflies and their habitats.</p>
+    </div>
 </div>
 
 <div class="navigation"></div>
