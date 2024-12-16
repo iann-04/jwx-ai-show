@@ -21,10 +21,6 @@
             width: 100%;
             height: 100%;
             overflow: hidden;
-            display: flex;
-            flex-direction: column;
-            scroll-snap-type: y mandatory;
-            scroll-behavior: smooth;
         }
 
         .slide {
@@ -37,8 +33,9 @@
             font-size: 48px;
             color: #333;
             font-weight: bold;
-            position: relative;
-            scroll-snap-align: start;
+            position: absolute;
+            top: 0;
+            left: 100%;
             transition: transform 0.5s ease;
         }
 
@@ -114,14 +111,20 @@
     const slides = document.querySelectorAll('.slide');
     const totalSlides = slides.length;
 
+    // 更新页面
     function updateSlide() {
-        // 滚动到当前幻灯片
-        document.getElementById('swiper').scrollTo({
-            top: currentSlide * window.innerHeight, 
-            behavior: 'smooth'
+        slides.forEach((slide, index) => {
+            if (index < currentSlide) {
+                slide.style.transform = 'translateX(-100%)'; // 移动到左侧
+            } else if (index > currentSlide) {
+                slide.style.transform = 'translateX(100%)'; // 移动到右侧
+            } else {
+                slide.style.transform = 'translateX(0)'; // 显示当前页
+            }
         });
     }
 
+    // 下一页
     function nextSlide() {
         if (currentSlide < totalSlides - 1) {
             currentSlide++;
@@ -129,12 +132,16 @@
         }
     }
 
+    // 上一页
     function prevSlide() {
         if (currentSlide > 0) {
             currentSlide--;
             updateSlide();
         }
     }
+
+    // 初始更新
+    updateSlide();
 </script>
 
 </body>
